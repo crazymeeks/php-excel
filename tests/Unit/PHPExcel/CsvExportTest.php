@@ -20,6 +20,9 @@ class CsvExportTest extends TestCase
 
         $xls = new Xls();
         $csv = new CsvExport();
+        
+        // If developers wants to download file directly on the browser replace
+        // export() with download(). i.e $xls->download($excel5);
         $xls->export($csv);
     
         $exported_file = __DIR__ . '/' . $csv->getFilename() . '.csv';

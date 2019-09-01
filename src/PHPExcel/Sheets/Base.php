@@ -6,6 +6,8 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use Crazymeeks\PHPExcel\Contracts\ExcelInterface;
 
+
+
 abstract class Base
 {
 
@@ -138,33 +140,67 @@ abstract class Base
     }
 
     /**
+     * 
+     * @param array $data
+     * @param \Crazymeeks\PHPExcel\Contracts\ExcelInterface $excel
+     *
+     * @return void
+     */
+    private function write(array $data, ExcelInterface $excel): void
+    {
+        
+        $spreadsheet = $this->spreadsheet->setActiveSheetIndex($this->getActiveSheetIndex($excel));
+        $column_index = 2; // start writing actual data to row 2 of the cell
+
+        foreach($data as $array_data){
+            foreach($array_data as $key => $actual_data){
+                $column = $this->sheetColumns()[$key] . ($column_index);
+                $spreadsheet->setCellValue($column, $actual_data);
+                unset($actual_data);
+            }
+            $column_index++;
+            unset($array_data);
+        }
+
+        $this->spreadsheet->setActiveSheetIndex($this->getActiveSheetIndex($excel));
+        $writer = IOFactory::createWriter($this->spreadsheet, ucfirst($excel->getType()));
+        $writer->save($this->getFile());
+    }
+
+    /**
      * @inheritDoc
      */
     public function download(ExcelInterface $excel)
     {
 
         $content_type = $this->contentType();
-       
+        
         $file = $this->export($excel);
+
         $filename = basename($file);
+
+        // ob_get_clean fix PhpSpreadsheet's bug when downloading
+        // file to browser.
+        ob_get_clean();
 
         header('HTTP/1.1 200 OK');
         header('Cache-Control: no-cache, must-revalidate');
         header("Pragma: no-cache");
         header("Expires: 0");
-        header("Content-type: $content_type");
+        header("Content-Type: $content_type");
         header("Content-Disposition: attachment; filename=$filename");
+        
         // If you're serving to IE 9, then the following may be needed
         header('Cache-Control: max-age=1');
+        
         // If you're serving to IE over SSL, then the following may be needed
         header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
         header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); // always modified
         header('Cache-Control: cache, must-revalidate'); // HTTP/1.1
         header('Pragma: public'); // HTTP/1.0
-        readfile($file);
 
+        @readfile($file);
         $this->removedExportedFile();
-        
         exit;
     }
 
@@ -193,33 +229,7 @@ abstract class Base
 
     }
 
-    /**
-     * 
-     * @param array $data
-     * @param \Crazymeeks\PHPExcel\Contracts\ExcelInterface $excel
-     *
-     * @return void
-     */
-    private function write(array $data, ExcelInterface $excel): void
-    {
-        
-        $spreadsheet = $this->spreadsheet->setActiveSheetIndex($this->getActiveSheetIndex($excel));
-        $column_index = 2; // start writing actual data to row 2 of the cell
-        
-        foreach($data as $array_data){
-            foreach($array_data as $key => $actual_data){
-                $column = $this->sheetColumns()[$key] . ($column_index);
-                $spreadsheet->setCellValue($column, $actual_data);
-                unset($actual_data);
-            }
-            $column_index++;
-            unset($array_data);
-        }
-
-        $writer = IOFactory::createWriter($this->spreadsheet, ucfirst($excel->getType()));
-        $writer->save($this->getFile());
-
-    }
+    
 
     /**
      * @param @param \Crazymeeks\PHPExcel\Contracts\ExcelInterface $excel
@@ -233,7 +243,12 @@ abstract class Base
         return $active_index;
     }
 
-    private function sheetColumns()
+    /**
+     * Spreadsheet columns
+     *
+     * @return array
+     */
+    private function sheetColumns(): array
     {
         return [
             0 => 'A',

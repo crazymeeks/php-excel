@@ -1,44 +1,7 @@
 <?php
-
-namespace Tests\Unit\PHPExcel;
-
-use Tests\TestCase;
+require __DIR__ . '/vendor/autoload.php';
 use Crazymeeks\PHPExcel\Xls;
 
-/**
- * @covers Crazymeeks\PHPExcel\Xls
- */
-class Excel5Test extends TestCase
-{
-    
-    /**
-     * @test
-     * @group unit_positive
-     */
-    public function it_should_export_data_to_xls()
-    {
-
-        $xls = new Xls();
-
-        $excel5 = new Excel5Export();
-
-        // If developers wants to download file directly on the browser replace
-        // export() with download(). i.e $xls->download($excel5);
-        $xls->export($excel5);
-    
-        $exported_file = __DIR__ . '/' . $excel5->getFilename() . '.xls';
-        $file_exist = file_exists($exported_file);
-        $this->assertTrue($file_exist);
-
-        @unlink($exported_file);
-    }
-    
-}
-
-/**
- * Class written by developer that implements \Crazymeeks\PHPExcel\Contracts\ExcelInterface
- * this conforms to Open/Close of SOLID principles
- */
 class Excel5Export implements \Crazymeeks\PHPExcel\Contracts\ExcelInterface
 {
 
@@ -108,3 +71,30 @@ class Excel5Export implements \Crazymeeks\PHPExcel\Contracts\ExcelInterface
     }
 
 }
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST">
+        <input type="submit" name="Download" value="Download">
+    </form>
+
+    <?php
+    if (isset($_POST['Download'])) {
+        
+        $xls = new Xls();
+        $excel5 = new Excel5Export();
+        $xls->download($excel5);
+
+    }
+    
+    ?>
+</body>
+</html>
