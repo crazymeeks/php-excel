@@ -43,8 +43,8 @@ abstract class Base
      */
     protected function removedExportedFile()
     {
-        if (\file_exists($this->savedFile)) {
-            @unlink($this->savedFile);
+        if (\file_exists($this->getFile())) {
+            @unlink($this->getFile());
         }
     }
 
@@ -135,6 +135,37 @@ abstract class Base
         $this->setExcelHeader($data, $excel)->write($data, $excel);
         return $this->getFile();
 
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function download(ExcelInterface $excel)
+    {
+
+        $content_type = $this->contentType();
+       
+        $file = $this->export($excel);
+        $filename = basename($file);
+
+        header('HTTP/1.1 200 OK');
+        header('Cache-Control: no-cache, must-revalidate');
+        header("Pragma: no-cache");
+        header("Expires: 0");
+        header("Content-type: $content_type");
+        header("Content-Disposition: attachment; filename=$filename");
+        // If you're serving to IE 9, then the following may be needed
+        header('Cache-Control: max-age=1');
+        // If you're serving to IE over SSL, then the following may be needed
+        header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); // always modified
+        header('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+        header('Pragma: public'); // HTTP/1.0
+        readfile($file);
+
+        $this->removedExportedFile();
+        
+        exit;
     }
 
     /**
