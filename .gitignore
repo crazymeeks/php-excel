@@ -1,0 +1,3 @@
+.vscode
+.phpunit.result.cache
+vendor
