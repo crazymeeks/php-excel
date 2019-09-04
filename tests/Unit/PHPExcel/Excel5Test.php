@@ -44,6 +44,20 @@ class Excel5Export implements \Crazymeeks\PHPExcel\Contracts\ExcelInterface
 
 
     /**
+     * Optional method: get the width that will be applied
+     * to the column of the active sheet.
+     *
+     * @return array
+     */
+    public function getWith()
+    {
+        return [
+            'A' => 20,
+            'B' => 10
+        ];
+    }
+
+    /**
      * Optional method: set active sheet index
      *
      * @return int
