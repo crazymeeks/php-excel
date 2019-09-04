@@ -140,6 +140,7 @@ abstract class Base
     }
 
     /**
+     * Write data to excel
      * 
      * @param array $data
      * @param \Crazymeeks\PHPExcel\Contracts\ExcelInterface $excel
@@ -162,9 +163,31 @@ abstract class Base
             unset($array_data);
         }
 
+        /**
+         * @todo:: Continue development of this feature
+         */
+        // $this->applyOptionals($excel);
+
         $this->spreadsheet->setActiveSheetIndex($this->getActiveSheetIndex($excel));
         $writer = IOFactory::createWriter($this->spreadsheet, ucfirst($excel->getType()));
         $writer->save($this->getFile());
+    }
+
+
+    /**
+     * We will get optional methods defined by developer and executre it.
+     * This will apply formatting, cell coloring, etc.
+     *
+     * @param \Crazymeeks\PHPExcel\Contracts\ExcelInterface $excel
+     * 
+     * @return void
+     */
+    private function applyOptionals(ExcelInterface $excel): void
+    {
+        $widthCount = count($excel->getWith());
+        if (\method_exists($excel, 'getWith') && $widthCount > 0) {
+            
+        }
     }
 
     /**
