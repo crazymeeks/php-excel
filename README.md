@@ -11,6 +11,8 @@
 	<br>
 </h1>
 
+#### For documentation [click here](https://github.com/crazymeeks/php-excel/wiki/v1.0.0)  
+
 ##### Author
 Jeff Claud
 
