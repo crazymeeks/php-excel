@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Crazymeeks\PHPExcel\Sheet;
+namespace PHPExcel\Sheet;
 
-use Crazymeeks\PHPExcel\Sheet\Base;
-use Crazymeeks\PHPExcel\Contracts\ExcelInterface;
-use Crazymeeks\PHPExcel\Sheet\SpreadSheetInterface;
+use PHPExcel\Sheet\Base;
+use PHPExcel\Contracts\ExcelInterface;
+use PHPExcel\Sheet\SpreadSheetInterface;
 
 class Xls extends Base implements SpreadSheetInterface
 {

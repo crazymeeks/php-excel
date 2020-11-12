@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Crazymeeks\PHPExcel\Sheet;
+namespace PHPExcel\Sheet;
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use Crazymeeks\PHPExcel\Contracts\ExcelInterface;
+use PHPExcel\Contracts\ExcelInterface;
 
 
 
@@ -64,7 +64,7 @@ abstract class Base
         $this->setFileName($excel)->setFile($excel);
 
         if (!is_array($data)) {
-            throw \Crazymeeks\PHPExcel\Exceptions\ExportDataFormatInvalidException::notArray(get_class($excel));
+            throw \PHPExcel\Exceptions\ExportDataFormatInvalidException::notArray(get_class($excel));
         }
 
         if (count($data) > 0) {
@@ -72,9 +72,8 @@ abstract class Base
             if (!is_array($data[0])) {
 
                 if (is_object($data[0])) {
-                    ;
                 } else {
-                    throw \Crazymeeks\PHPExcel\Exceptions\ExportDataFormatInvalidException::notMultiArray(get_class($excel));
+                    throw \PHPExcel\Exceptions\ExportDataFormatInvalidException::notMultiArray(get_class($excel));
                 }
             }
         }
@@ -106,7 +105,7 @@ abstract class Base
     }
 
     /**
-     * @param \Crazymeeks\PHPExcel\Contracts\ExcelInterface $excel
+     * @param \PHPExcel\Contracts\ExcelInterface $excel
      *
      * @return $this
      */
@@ -231,7 +230,7 @@ abstract class Base
      * Extract and set excel header from data
      *
      * @param array &$data
-     * @param \Crazymeeks\PHPExcel\Contracts\ExcelInterface $excel
+     * @param \PHPExcel\Contracts\ExcelInterface $excel
      * 
      * @return array
      */
@@ -255,7 +254,7 @@ abstract class Base
     
 
     /**
-     * @param @param \Crazymeeks\PHPExcel\Contracts\ExcelInterface $excel
+     * @param \PHPExcel\Contracts\ExcelInterface $excel
      * 
      * @return int
      */
@@ -306,7 +305,7 @@ abstract class Base
     /**
      * Get absolute path where the file will be saved after being exported
      *
-     * @param \Crazymeeks\PHPExcel\Contracts\ExcelInterface $excel
+     * @param \PHPExcel\Contracts\ExcelInterface $excel
      * 
      * @return string
      */

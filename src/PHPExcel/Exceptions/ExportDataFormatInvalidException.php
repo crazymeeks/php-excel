@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Crazymeeks\PHPExcel\Exceptions;
+namespace PHPExcel\Exceptions;
 
 
 class ExportDataFormatInvalidException extends \Exception

@@ -3,10 +3,10 @@
 namespace Tests\Unit\PHPExcel;
 
 use Tests\TestCase;
-use Crazymeeks\PHPExcel\Xls;
+use PHPExcel\Xls;
 
 /**
- * @covers Crazymeeks\PHPExcel\Xls
+ * @covers PHPExcel\Xls
  */
 class Excel5Test extends TestCase
 {
@@ -36,10 +36,10 @@ class Excel5Test extends TestCase
 }
 
 /**
- * Class written by developer that implements \Crazymeeks\PHPExcel\Contracts\ExcelInterface
+ * Class written by developer that implements \PHPExcel\Contracts\ExcelInterface
  * this conforms to Open/Close of SOLID principles
  */
-class Excel5Export implements \Crazymeeks\PHPExcel\Contracts\ExcelInterface
+class Excel5Export implements \PHPExcel\Contracts\ExcelInterface
 {
 
 

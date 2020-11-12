@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
 
-namespace Crazymeeks\PHPExcel\Factory;
+namespace PHPExcel\Factory;
 
 use ReflectionClass;
-use \Crazymeeks\PHPExcel\Sheet\SpreadSheetInterface;
+use \PHPExcel\Sheet\SpreadSheetInterface;
 
 class SheetFactory
 {
@@ -19,7 +19,7 @@ class SheetFactory
      */
     public function make(string $spreadsheet_type): SpreadSheetInterface
     {
-        $class = "Crazymeeks\\PHPExcel\\Sheet\\" . ucfirst($spreadsheet_type);
+        $class = "PHPExcel\\Sheet\\" . ucfirst($spreadsheet_type);
 
         $reflection = new ReflectionClass($class);
 
