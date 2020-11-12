@@ -3,7 +3,7 @@
 namespace Tests\Unit\PHPExcel;
 
 use Tests\TestCase;
-use PHPExcel\Xls;
+use Crazymeeks\PHPExcel\Xls;
 
 /**
  * @covers PHPExcel\Xls
@@ -37,7 +37,7 @@ class CsvExportTest extends TestCase
  * Class written by developer that implements \PHPExcel\Contracts\ExcelInterface
  * this conforms to Open/Close of SOLID principles
  */
-class CsvExport implements \PHPExcel\Contracts\ExcelInterface
+class CsvExport implements \Crazymeeks\PHPExcel\Contracts\ExcelInterface
 {
 
 

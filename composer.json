@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PHPExcel\\": "src"
+            "Crazymeeks\\": "src"
         }
     },
     "require-dev": {

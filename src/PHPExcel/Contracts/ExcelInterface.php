@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace PHPExcel\Contracts;
+namespace Crazymeeks\PHPExcel\Contracts;
 
 interface ExcelInterface
 {

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace PHPExcel\Exceptions;
+namespace Crazymeeks\PHPExcel\Exceptions;
 
 
 class ExportDataFormatInvalidException extends \Exception
@@ -16,7 +16,7 @@ class ExportDataFormatInvalidException extends \Exception
         return new static(sprintf("%s's dataToExport() method expected return multi-dimensional  array.", $class));
     }
 
-    public function notMultiArray($class)
+    public static function notMultiArray($class)
     {
         return new static(sprintf("%s's dataToExport() method expected return multi-dimensional array or object.", $class));
     }

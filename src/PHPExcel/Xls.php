@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace PHPExcel;
+namespace Crazymeeks\PHPExcel;
 
-use PHPExcel\Factory\SheetFactory;
-use PHPExcel\Contracts\ExcelInterface;
+use Crazymeeks\PHPExcel\Factory\SheetFactory;
+use Crazymeeks\PHPExcel\Contracts\ExcelInterface;
 
 class Xls
 {
@@ -16,7 +16,7 @@ class Xls
     /**
      * Constructor
      *
-     * @param \PHPExcel\Factory\SheetFactory $factory
+     * @param \Crazymeeks\PHPExcel\Factory\SheetFactory $factory
      */
     public function __construct(SheetFactory $factory = null)
     {
@@ -26,7 +26,7 @@ class Xls
     /**
      * Export data
      *
-     * @param \PHPExcel\Contracts\ExcelInterface $excel
+     * @param \Crazymeeks\PHPExcel\Contracts\ExcelInterface $excel
      * 
      * @return void
      */

@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace PHPExcel\Sheet;
+namespace Crazymeeks\PHPExcel\Sheets;
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PHPExcel\Contracts\ExcelInterface;
+use Crazymeeks\PHPExcel\Contracts\ExcelInterface;
 
 
 
@@ -64,7 +64,7 @@ abstract class Base
         $this->setFileName($excel)->setFile($excel);
 
         if (!is_array($data)) {
-            throw \PHPExcel\Exceptions\ExportDataFormatInvalidException::notArray(get_class($excel));
+            throw \Crazymeeks\PHPExcel\Exceptions\ExportDataFormatInvalidException::notArray(get_class($excel));
         }
 
         if (count($data) > 0) {
@@ -73,7 +73,7 @@ abstract class Base
 
                 if (is_object($data[0])) {
                 } else {
-                    throw \PHPExcel\Exceptions\ExportDataFormatInvalidException::notMultiArray(get_class($excel));
+                    throw \Crazymeeks\PHPExcel\Exceptions\ExportDataFormatInvalidException::notMultiArray(get_class($excel));
                 }
             }
         }
@@ -105,7 +105,7 @@ abstract class Base
     }
 
     /**
-     * @param \PHPExcel\Contracts\ExcelInterface $excel
+     * @param \Crazymeeks\PHPExcel\Contracts\ExcelInterface $excel
      *
      * @return $this
      */
@@ -230,7 +230,7 @@ abstract class Base
      * Extract and set excel header from data
      *
      * @param array &$data
-     * @param \PHPExcel\Contracts\ExcelInterface $excel
+     * @param \Crazymeeks\PHPExcel\Contracts\ExcelInterface $excel
      * 
      * @return array
      */
@@ -254,7 +254,7 @@ abstract class Base
     
 
     /**
-     * @param \PHPExcel\Contracts\ExcelInterface $excel
+     * @param \Crazymeeks\PHPExcel\Contracts\ExcelInterface $excel
      * 
      * @return int
      */
@@ -305,7 +305,7 @@ abstract class Base
     /**
      * Get absolute path where the file will be saved after being exported
      *
-     * @param \PHPExcel\Contracts\ExcelInterface $excel
+     * @param \Crazymeeks\PHPExcel\Contracts\ExcelInterface $excel
      * 
      * @return string
      */

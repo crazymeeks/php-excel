@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace PHPExcel\Sheet;
+namespace Crazymeeks\PHPExcel\Sheets;
 
-use PHPExcel\Contracts\ExcelInterface;
+use Crazymeeks\PHPExcel\Contracts\ExcelInterface;
 
 interface SpreadSheetInterface
 {
@@ -10,7 +10,7 @@ interface SpreadSheetInterface
     /**
      * Export data
      *
-     * @param \PHPExcel\Contracts\ExcelInterface $excel
+     * @param \Crazymeeks\PHPExcel\Contracts\ExcelInterface $excel
      * 
      * @return string The exported file(include absolute path)
      */
